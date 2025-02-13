@@ -93,6 +93,7 @@ class Node:
 
     def expand(self, problem):
         """List the nodes reachable in one step from this node."""
+        problem.nodes_expanded += 1
         return [self.child_node(problem, action)
                 for action in problem.actions(self.state)]
 
@@ -254,6 +255,7 @@ def breadth_first_graph_search(problem):
                 if problem.goal_test(child.state):
                     return child
                 frontier.append(child)
+        print(f"Step {step}:  Node: {node.state}  Explored = [ {explored} ] | Frontier = [ {[n.state for n in frontier]} ]")
     return None
 
 
